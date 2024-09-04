@@ -8,6 +8,6 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, "..", "views"))
   app.useStaticAssets(join(__dirname, "..", "public"))
   app.setViewEngine("ejs")
-  await app.listen(process.env.PORT);
+  await app.listen(3000);
 }
 bootstrap();
