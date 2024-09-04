@@ -39,6 +39,4 @@ jobs:
           git fetch private
           git merge private/main --allow-unrelated-histories -X ours
           git pull private main --allow-unrelated-histories
-          git gc --prune=now --aggressive
-          git repack -a -d
           git push private master --force-with-lease
