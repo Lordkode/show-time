@@ -42,6 +42,8 @@ jobs:
       - name: Add private repo as remote
         run: |
           git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
+          git config --global user.email "richard.ati@epitech.eu"
+          git config --global user.name "Lordkode"
           git config --global pull.rebase false
           git pull -X ours
           git config --global alias.pullours 'pull -X ours'
