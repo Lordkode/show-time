@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event x | coming soon page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Joti+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@latest/dist/confetti.browser.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #title {
+        font-family: 'Joti One', serif;
+      }
+      .description {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+    <script>
+      function launchConfetti() {
+        confetti({
+          particleCount: 100,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ['#ff0', '#0f0', '#00f', '#f00'],
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const duration = 60000;
+        const end = Date.now() + duration;
+        const interval = 3000;
+
+        function emit() {
+          if (Date.now() < end) {
+            launchConfetti();
+            setTimeout(emit, interval);
+          }
+        }
+
+        emit();
+      });
+    </script>
+  </head>
+  <body
+    class="bg-[#0d1115] place-content-center place-items-center w-full h-screen"
+  >
+    <div
+      class="flex flex-col w-full h-full place-content-center place-items-center space-y-6"
+    >
+      <h1 class="text-7xl text-[#42fa71] font-black text-center" id="title">
+        Eventx | Coming soon
+      </h1>
+      <p class="text-white font-extralight w-1/2 text-center description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod iste
+        saepe ipsa possimus, eius laborum ullam cumque facilis sapiente
+        reiciendis laboriosam, doloribus expedita. Illo, id? Consequuntur
+        temporibus aliquam quo minus!
+      </p>
+      <form class="relative">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="w-[650px] h-14 border pl-4 bg-[#0b0d0e] rounded-md focus:border-blue-500 text-white"
+          placeholder="Inscrivez-vous dès maintenant"
+        />
+        <input
+          type="submit"
+          value="S'inscrire"
+          class="text-white bg-[#42fa71] h-12 w-48 border border-[#42fa71] rounded-md absolute left-[455px] top-1 hover:bg-transparent hover:border-[#42fa71] hover:text-[#42fa71]"
+        />
+      </form>
+    </div>
+  </body>
+</html>
