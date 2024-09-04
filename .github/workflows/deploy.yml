@@ -30,19 +30,19 @@ jobs:
           docker push devrichard2001/showtime:latest
           docker push devrichard2001/showtime:${{ github.sha }}
 
-      - name: Add private repo as remote
-        run: |
-          git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
-          git config --global user.email "richard.ati@epitech.eu"
-          git config --global user.name "Lordkode"
+      # - name: Add private repo as remote
+      #   run: |
+      #     git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
+      #     git config --global user.email "richard.ati@epitech.eu"
+      #     git config --global user.name "Lordkode"
 
-      - name: Clean up git objects
-        run: |
-          git gc --prune=now
-          git repack -a -d --depth=250 --window=250
+      # - name: Clean up git objects
+      #   run: |
+      #     git gc --prune=now
+      #     git repack -a -d --depth=250 --window=250
 
-      - name: Force push to private repo
-        run: |
-          git fetch private
-          git reset --hard origin/master
-          git push private master --force
+      # - name: Force push to private repo
+      #   run: |
+      #     git fetch private
+      #     git reset --hard origin/master
+      #     git push private master --force
