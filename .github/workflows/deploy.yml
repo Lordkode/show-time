@@ -45,5 +45,5 @@ jobs:
           git config --global pull.rebase false
           git pull -X ours
           git config --global alias.pullours 'pull -X ours'
-          git pull private main
+          git pull private main --allow-unrelated-histories
           git push private master
