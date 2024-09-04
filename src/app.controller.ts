@@ -9,4 +9,12 @@ export class AppController {
   @Render("index")
   getHello(){
   }
+
+  @Get("/register")
+  @Render("register")
+  register(){}
+
+  @Get("/login")
+  @Render("login")
+  login(){}
 }
