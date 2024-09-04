@@ -39,4 +39,4 @@ jobs:
           git fetch private
           git merge private/main --allow-unrelated-histories -X ours
           git pull private main --allow-unrelated-histories
-          git push private master
+          git push private master --force-with-lease
