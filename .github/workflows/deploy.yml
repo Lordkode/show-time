@@ -42,4 +42,5 @@ jobs:
       - name: Add private repo as remote
         run: |
           git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
+          git pull private
           git push private master
