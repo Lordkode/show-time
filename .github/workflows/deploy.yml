@@ -39,5 +39,10 @@ jobs:
           git config --global user.email "richard.ati@epitech.eu"
           git config --global user.name "Lordkode"
           git fetch private
-          git reset --hard private/main  # Réinitialiser l'état local pour correspondre à la branche distante
-          git push private master --force  # Forcer le push des modifications locales
+          git reset --hard private/master
+          git push private master --force
+
+      - name: Debug Git Status
+        run: |
+          git status
+          git log --oneline --graph --decorate
