@@ -30,13 +30,12 @@ jobs:
           docker push devrichard2001/showtime:latest
           docker push devrichard2001/showtime:${{ github.sha }}
 
-      - name: Add private repo as remote
+      - name: Add private repo as remote and handle merge
         run: |
           git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
           git config --global user.email "richard.ati@epitech.eu"
           git config --global user.name "Lordkode"
           git config --global pull.rebase false
-          git pull -X ours
-          git config --global alias.pullours 'pull -X ours'
-          git pull private main --allow-unrelated-histories
+          git fetch private
+          git merge private/main -X ours
           git push private master
