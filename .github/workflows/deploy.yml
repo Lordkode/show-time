@@ -35,7 +35,6 @@ jobs:
           git remote add private git@github.com:EpitechCodingAcademyPromo2024/C-COD-250-COT-2-3-showtime-richard.ati.git
           git config --global user.email "richard.ati@epitech.eu"
           git config --global user.name "Lordkode"
-          git config --global pull.rebase false
           git fetch private
-          git merge private/main -X ours
+          git merge private/main --allow-unrelated-histories -X ours
           git push private master
