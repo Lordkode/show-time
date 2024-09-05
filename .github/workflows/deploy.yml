@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - stag
   pull_request:
     branches:
       - stag
