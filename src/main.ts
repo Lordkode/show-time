@@ -13,6 +13,6 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, "..", "public"))
   app.setViewEngine("ejs")
   app.use(cookieParser());
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
