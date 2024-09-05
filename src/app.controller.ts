@@ -5,16 +5,19 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get("/")
-  @Render("index")
-  getHello(){
-  }
+  @Get('/')
+  @Render('index')
+  getHello() {}
 
-  @Get("/register")
-  @Render("register")
-  register(){}
+  @Get('/register')
+  @Render('register')
+  register() {}
 
-  @Get("/login")
-  @Render("login")
-  login(){}
+  @Get('/login')
+  @Render('login')
+  login() {}
+
+  @Get('/add-event')
+  @Render('add-event')
+  addEvent() {}
 }
