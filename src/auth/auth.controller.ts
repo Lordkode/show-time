@@ -35,7 +35,7 @@ export class AuthController {
   ) {
     try {
       const user = await this.authService.register(body.username, body.email, body.password, body.phone, res);
-      return res.status(HttpStatus.CREATED).json({ user });
+      return res.redirect('/')
     } catch (error) {
       return res.redirect('/')
     }
