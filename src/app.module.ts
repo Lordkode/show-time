@@ -7,6 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './auth/jwt.strategy';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { JwtStrategy } from './auth/jwt.strategy';
         signOptions: { expiresIn: configService.get<string>('JWT_EXPIRATION') },
       }),
     }),
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtStrategy],
