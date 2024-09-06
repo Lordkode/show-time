@@ -1,4 +1,10 @@
-import { Module } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  RequestMethod,
+  MiddlewareConsumer,
+} from '@nestjs/common';
+import { LoggerMiddleware } from './logger/logger.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -10,6 +16,7 @@ import { JwtStrategy } from './auth/jwt.strategy';
 import { TicketsModule } from './tickets/tickets.module';
 import { EventService } from './service/event/event.service';
 import { EventController } from './controller/event/event.controller';
+import { UsersModule } from './modules/users/users.module';
 import { EventSchema } from './Schema/events.schema';
 
 @Module({
@@ -36,8 +43,15 @@ import { EventSchema } from './Schema/events.schema';
     }),
     TicketsModule,
     MongooseModule.forFeature([{ name: 'Event', schema: EventSchema }]),
+    UsersModule,
   ],
   controllers: [AppController, EventController],
   providers: [AppService, JwtStrategy, EventService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({ path: 'users', method: RequestMethod.GET });
+  }
+}
