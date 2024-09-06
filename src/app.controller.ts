@@ -20,4 +20,8 @@ export class AppController {
   @Get('/add-event')
   @Render('add-event')
   addEvent() {}
+
+  @Get('/events')
+  @Render('events')
+  events() {}
 }

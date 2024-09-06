@@ -31,7 +31,7 @@ export class Event extends Document {
   // @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
   // category_id: Category[];
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   thumbnail: string;
 }
 

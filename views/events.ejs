@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center">Upcoming Events</h2>
+    <div id="events-container" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+
+      await fetch('/event')
+        .then(response => response.json())
+        .then( async events => {
+          const eventsContainer = document.getElementById('events-container');
+            console.log(events.eventData)
+            
+            const allEvents = events.eventData
+        
+          for(var key in allEvents) {
+            console.log(allEvents[key])
+            const eventCard = document.createElement('div');
+            eventCard.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md');
+
+            eventCard.innerHTML = `
+              <h3 class="text-xl font-bold">${allEvents[key].title}</h3>
+              <div class="text-gray-600">${allEvents[key].description}</div>
+              <p><strong>Promoteur :</strong> ${allEvents[key].promoteur}</p>
+              <p><strong>Lieu :</strong> ${allEvents[key].location}</p>
+              <p><strong>Date :</strong> ${new Date(allEvents[key].start_time).toLocaleDateString()}</p>
+              <p><strong>Tickets disponibles :</strong> ${allEvents[key].available} / ${allEvents[key].total_tickets}</p>
+            `;
+
+            eventsContainer.appendChild(eventCard);
+          };
+
+        })
+        .catch(error => console.error('Erreur lors de la récupération des événements:', error));
+    });
+  </script>
+</body>
+</html>
