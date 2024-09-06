@@ -6,6 +6,7 @@ import { Request, Response } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+
   @Get('/')
   @Render('index')
   async home(@Req() request: Request, @Res() response: Response) {
@@ -13,6 +14,11 @@ export class AppController {
     const isAuthenticated = !!accessToken;
     response.render('index', { isAuthenticated });
   }
+
+  @Get("/detail_events")
+  @Render("detail_events")
+  detail_events(){}
+
 
   @Get('/index')
   @Render('home')
