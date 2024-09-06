@@ -8,6 +8,7 @@ import { UpdateEventDto } from 'src/dto/update-event.dto';
 @Injectable()
 export class EventService {
   constructor(@InjectModel('Event') private eventModel: Model<IEvent>) {}
+
   async createEvent(createEventDto: CreateEventDto): Promise<IEvent> {
     const newEvent = await new this.eventModel(createEventDto);
     return newEvent.save();
