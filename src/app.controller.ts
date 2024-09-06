@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class AppController {
@@ -7,11 +7,11 @@ export class AppController {
     return 'Hello World!';
   }
 
-  @Get("/register")
-  @Render("register")
-  register(){}
+  @Get('/register')
+  @Render('register')
+  register() {}
 
-  @Get("/login")
-  @Render("login")
-  login(){}
+  @Get('/login')
+  @Render('login')
+  login() {}
 }
