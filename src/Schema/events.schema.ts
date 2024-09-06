@@ -1,14 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
-import { Category } from '../modules/categories/schemas/category.schema';
+import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Event extends Document {
   @Prop({ required: true })
-  username: string;
+  title: string;
 
   @Prop({ required: true })
-  description: Text;
+  description: string;
 
   @Prop({ required: true })
   promoteur: string;
@@ -28,8 +27,9 @@ export class Event extends Document {
   @Prop({ required: true })
   available: number;
 
-  @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
-  category_id: Types.ObjectId;
+  @Prop({ required: true })
+  @Prop({ type: String, required: true })
+  thumbnail: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event x | coming soon page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Joti+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        body h1,
+        .logo,
+        .title,
+        h2,
+        .menu,
+        .price,
+        .date {
+            font-family: 'Joti One', serif;
+        }
+
+        .description {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="h-screen w-full">
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <header class="flex justify-between place-content-center place-items-center h-20 px-8">
+        <div class="flex place-content-center place-items-center space-x-3">
+            <div class="w-8 h-8 bg-[#0d1115] rounded-md flex place-content-center place-items-center">
+                <span class="logo text-[#42fa71]"><a href="/">Ex</a></span>
+            </div>
+            <span class="title">Event X</span>
+        </div>
+        <div class="flex space-x-4">
+            <a href="#" class="menu hover:text-[#42fa71]">Home</a>
+            <a href="#" class="menu hover:text-[#42fa71]">All events</a>
+            <a href="#" class="menu hover:text-[#42fa71]">About</a>
+            <a href="#" class="menu hover:text-[#42fa71]">Contact</a>
+        </div>
+        <div class="flex space-x-4 place-content-center place-items-center">
+
+            <% if (isAuthenticated) { %>
+                <form action="/auth/logout" method="POST">
+                    <button type="submit"
+                        class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]">
+                        Déconnecter
+                    </button>
+                </form>
+                <% } else { %>
+                    <a href="/auth/register"
+                        class="title text-center content-center border w-40 h-12 rounded-md text-[#0d1115] hover:bg-transparent border-[#0d1115] border-2">S'inscrire</a>
+                    <a href="/auth/login"
+                        class="title text-center content-center border border-[#42fa71] bg-[#42fa71] w-40 h-12 rounded-md text-[#0d1115] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]">Se
+                        connecter</a>
+                    <% } %>
+
+        </div>
+    </header>
+    <main class="flex place-content-center place-items-center px-8">
+        <form action="/tickets" method="POST" class="flex flex-col place-content-center place-items-center space-y-4">
+            <input type="text" name="username" id="username" placeholder="Username"
+                class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]" />
+            <input type="text" name="username" id="username" placeholder="Username"
+                class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]" />
+            <input type="text" name="username" id="username" placeholder="Username"
+                class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]" />
+            <input type="text" name="username" id="username" placeholder="Username"
+                class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]" />
+            <input type="text" name="username" id="username" placeholder="Username"
+                class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]" />
+            <input type="submit" value="Buy ticket now"
+                class="border border-[#0d1115] bg-[#0d1115] w-96 h-12 rounded-md pl-4 text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]" />
+        </form>
+    </main>
+</body>
+
+</html>
