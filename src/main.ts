@@ -19,6 +19,7 @@ async function bootstrap() {
   app.setViewEngine('ejs');
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(process.env.PORT);
+  app.listen(3000)
+  // await app.listen(process.env.PORT);
 }
 bootstrap();
