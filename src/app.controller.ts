@@ -12,4 +12,9 @@ export class AppController {
     const isAuthenticated = !!accessToken; 
     response.render('index', { isAuthenticated });
   }
+  @Get("/detail_events")
+  @Render("detail_events")
+  detail_events(){
+    
+  }
 }
