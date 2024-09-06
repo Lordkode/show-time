@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   Res,
+  Render
 } from '@nestjs/common';
 import { CreateEventDto } from 'src/dto/create-event.dto';
 import { UpdateEventDto } from 'src/dto/update-event.dto';
@@ -33,6 +34,10 @@ export class EventController {
       });
     }
   }
+
+  @Get('/add-event')
+  @Render('add-event')
+  addEvent() {}
 
   @Put('/:id')
   async updateEvent(

@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Category } from './category.schema';
 
 @Schema({ timestamps: true })
 export class Event extends Document {
@@ -27,9 +26,6 @@ export class Event extends Document {
 
   @Prop({ required: true })
   available: number;
-
-  // @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
-  // category_id: Category[];
 
   @Prop({ required: true })
   thumbnail: string;
