@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -5,7 +6,8 @@ import {
   IsString,
   MinLength,
   IsNumber,
-  IsEmpty,
+  IsOptional,
+  IsArray,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -22,16 +24,19 @@ export class CreateUserDto {
   @IsNotEmpty()
   password: string;
 
+  @Type(() => Number)
   @IsNumber()
   @IsNotEmpty()
   phone: number;
 
+  @Type(() => Boolean)
   @IsBoolean()
   is_admin: boolean;
 
-  @IsString()
-  @IsEmpty()
-  favorite: string[];
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  favorite: string[] | null;
 
   avatar?: string;
 }

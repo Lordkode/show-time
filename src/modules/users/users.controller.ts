@@ -20,8 +20,9 @@ export class UsersController {
     const users = await this.usersService.findAllUsers();
     return { users };
   }
+
   @Get('/dash')
-  @Render('Admin/dashboard')
+  @Render('admin/index')
   async getDashboard() {
     const totalUsers = await this.usersService.getTotalUsers();
     const users = await this.usersService.findAllUsers();
