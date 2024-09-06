@@ -12,7 +12,7 @@ export class AppController {
   async home(@Req() request: Request, @Res() response: Response) {
     const accessToken = request.cookies?.['access_token'];
     const isAuthenticated = !!accessToken;
-    response.render('index', { isAuthenticated });
+    response.render('home', { isAuthenticated });
   }
 
   @Get("/detail_events")
@@ -25,7 +25,7 @@ export class AppController {
   async index(@Req() request: Request, @Res() response: Response) {
     const accessToken = request.cookies?.['access_token'];
     const isAuthenticated = !!accessToken;
-    response.render('home', { isAuthenticated });
+    response.render('index', { isAuthenticated });
   }
 
   @Get('/buy-tickets')
