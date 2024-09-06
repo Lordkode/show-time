@@ -6,4 +6,12 @@ export class AppController {
   getHello(): string {
     return 'Hello World!';
   }
+
+  @Get("/register")
+  @Render("register")
+  register(){}
+
+  @Get("/login")
+  @Render("login")
+  login(){}
 }
