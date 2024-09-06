@@ -6,20 +6,26 @@ import { Request, Response } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+
   @Get('/')
   @Render('index')
   async home(@Req() request: Request, @Res() response: Response) {
     const accessToken = request.cookies?.['access_token'];
     const isAuthenticated = !!accessToken;
-    response.render('index', { isAuthenticated });
+    response.render('home', { isAuthenticated });
   }
+
+  @Get("/detail_events")
+  @Render("detail_events")
+  detail_events(){}
+
 
   @Get('/index')
   @Render('home')
   async index(@Req() request: Request, @Res() response: Response) {
     const accessToken = request.cookies?.['access_token'];
     const isAuthenticated = !!accessToken;
-    response.render('home', { isAuthenticated });
+    response.render('index', { isAuthenticated });
   }
 
   @Get('/buy-tickets')
