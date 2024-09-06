@@ -6,7 +6,7 @@ export type TicketDocument = Ticket & Document;
 @Schema()
 export class Ticket {
   @Prop({ required: true })
-  eventId: string;
+  eventId: string
 
   @Prop({ required: true })
   userId: string;
