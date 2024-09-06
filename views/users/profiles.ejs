@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Details of user <%= user.username %>.">
+    <meta name="keywords" content="user details, profile, user info">
+    <meta name="author" content="Eventix">
+    <title>User Detail - <%= user.username %></title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col items-center p-6">
+    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-4"><%= user.username %></h1>
+        <p class="text-lg mb-2"><strong>Email:</strong> <%= user.email %></p>
+        <p class="text-lg mb-2"><strong>Phone:</strong> <%= user.phone %></p>
+        <p class="text-lg mb-4"><strong>Admin:</strong> <%= user.is_admin ? 'Yes' : 'No' %></p>
+        <div class="flex space-x-4 mb-6">
+            <a href="/users/edit/<%= user.id %>" class="bg-yellow-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2">Edit</a>
+            <form action="/users/delete/<%= user.id %>" method="POST" class="inline">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Delete</button>
+            </form>
+        </div>
+        <a href="/users/dash" class="text-blue-600 hover:underline ">Back to Dashboard</a>
+    </div>
+</body>
+</html>

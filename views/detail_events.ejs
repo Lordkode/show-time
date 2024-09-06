@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event x | Coming Soon Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Joti+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+        #title {
+            font-family: 'Joti One', serif;
+        }
+        .description {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <script>
+        function launchConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 60,
+                origin: { y: 0.6 },
+                colors: ['#ff0', '#0f0', '#00f', '#f00'],
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const duration = 60000;
+            const end = Date.now() + duration;
+            const interval = 3000;
+
+            function emit() {
+                if (Date.now() < end) {
+                    launchConfetti();
+                    setTimeout(emit, interval);
+                }
+            }
+
+            emit();
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById("user-menu");
+            menu.classList.toggle("hidden");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.avatar-button')) {
+                const dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (!openDropdown.classList.contains('hidden')) {
+                        openDropdown.classList.add('hidden');
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-100">
+    <nav class="flex justify-between items-center p-4 bg-[#1c1f23]">
+        <div class="text-white text-2xl font-bold">Eventx</div>
+        <div class="flex items-center space-x-4">
+            <a href="#" class="text-white hover:text-[#42fa71]">Home</a>
+            <a href="#" class="text-white hover:text-[#42fa71]">About</a>
+            <div class="relative">
+                <input type="text" placeholder="Search events..." class="h-10 pl-4 pr-10 rounded-md bg-[#0b0d0e] text-white border border-gray-600 focus:outline-none focus:border-[#42fa71]" />
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-white">🔍</button>
+            </div>
+            <div class="relative">
+                <button class="text-white hover:text-[#42fa71]">
+                    🔔
+                </button>
+                <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-1">3</span>
+            </div>
+            <div class="relative">
+                <button class="avatar-button text-white hover:text-[#42fa71]" onclick="toggleMenu()">
+                    👤
+                </button>
+                <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg hidden dropdown-menu">
+                    <a href="#" class="block px-4 py-2 hover:bg-[#42fa71] hover:text-white">Profile</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-[#42fa71] hover:text-white">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="flex">
+                <div class="w-2/3 bg-indigo-900 text-white p-8 relative">
+                    <button id="backBtn" class="text-white mb-4 inline-block">&larr; Back</button>
+                    <h1 class="text-4xl font-bold mb-4">Dream World Wide in Jakarta</h1>
+                    <p class="mb-4">By Sayiad Rahman</p>
+                    <p class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        Balai Kartin, Nusa Indah Theatre, JI. Gatot Subroto No. 37, Kuningan, Jakarta Selatan, Jakarta, Indonesia
+                    </p>
+                    <button id="viewMapBtn" class="text-green-300 underline">View Map</button>
+                </div>
+                <div class="w-1/3 p-6">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <h2 class="font-bold mb-2">Date & Time</h2>
+                        <p class="text-gray-600 mb-4">Saturday, Sep 14, 2019 at 20:30 PM</p>
+                        <button id="addToCalendarBtn" class="bg-green-100 text-green-600 px-4 py-2 rounded w-full mb-4">
+                            + Add to Calendar
+                        </button>
+                        <button id="bookNowBtn" class="bg-green-600 text-white px-4 py-2 rounded w-full mb-4">
+                            Ticket Now 
+                        </button>
+                        <p class="text-center text-gray-500">Promoter Program</p>
+                        <p class="text-center text-gray-500">No Refunds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex mt-8 space-x-8">
+            <div class="w-2/3">
+                <h2 class="text-2xl font-bold mb-4">Description</h2>
+                <p class="text-gray-600 mb-4">
+                    It is the group where we Dream World Wide program to allow learning of the multiple Arabic language of the Qur'an and to learn universal reading of a basic language of islam. We want to create a network of student that learn each other and that instruction all over the world as possible with our unpresented Qur'an language curriculum and hope to create a worldwide network of student that learn from each other and that instruction and remain connected indefinitely. Join us today to begin your journey!
+                </p>
+                <p class="text-gray-600">
+                    We want to create a network of student that learn each other and that instruction all over the world as possible with our unpresented Qur'an language curriculum and hope to create a worldwide network of student that learn from each other and that instruction and remain connected indefinitely. Join us today to begin your journey!
+                </p>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">Hours</h2>
+                <p class="text-gray-600">Weekday Hours: 7 PM - 10 PM</p>
+                <p class="text-gray-600">Sunday Hours: 10 AM - 3 PM</p>
+
+                <h2 class="text-2xl font-bold mt-8 mb-4">How can I contact the organizer with any question?</h2>
+                <p class="text-gray-600">
+                    Please visit www.dreamworldwide.net and refer to the FAQ section for all questions and contact information.
+                </p>
+            </div>
+            <div class="w-1/3">
+                <h2 class="text-2xl font-bold mb-4">Event Location</h2>
+                <div class="bg-gray-200 h-48 mb-4 rounded"></div>
+                <h3 class="font-bold mb-2">Dream World Wide in Jakarta</h3>
+                <p class="text-gray-600 mb-4">
+                    Balai Kartin, Nusa Indah Theatre, JI. Gatot Subroto No. 37, Kuningan, Jakarta Selatan, Jakarta, Indonesia
+                </p>
+
+                
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 px-3 mt-16">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="w-full md:w-1/2 md:text-center md:mb-0 mb-8">
+                <p class="text-xs text-gray-400 md:text-sm">Copyright 2024 &copy; All Rights Reserved</p>
+            </div>
+            <div class="w-full md:w-1/2 md:text-center md:mb-0 mb-8">
+                <ul class="list-reset flex justify-center flex-wrap text-xs md:text-sm gap-3">
+                    <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    <li class="mx-4"><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+      </footer>
+
+   
+</body>
+</html>
