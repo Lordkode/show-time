@@ -31,6 +31,16 @@
                 <label for="phone" class=" text-sm font-medium text-gray-700">Phone:</label>
                 <input type="tel" name="phone" id="phone" value="<%= user.phone %>" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
+            <div class="flex items-center">
+                <input type="hidden" name="is_admin" value="false">
+                <input type="checkbox" name="is_admin" id="is_admin" value="true"
+                  class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  aria-label="Grant admin privileges" <%= user.is_admin ? 'checked' : '' %>>
+                <label for="is_admin" class="ml-2 block text-sm text-gray-700">Grant admin privileges</label>
+            </div>
+            
+            
+
             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Update</button>
         </form>
         <br>

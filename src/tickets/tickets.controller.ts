@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
@@ -23,7 +23,10 @@ export class TicketsController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateTicketDto: UpdateTicketDto,
+  ) {
     return await this.ticketsService.update(id, updateTicketDto);
   }
 }

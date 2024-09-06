@@ -8,21 +8,24 @@ import { Ticket, TicketDocument } from './schemas/ticket.schema';
 
 @Injectable()
 export class TicketsService {
-  constructor(@InjectModel(Ticket.name) private readonly ticketModel: Model<TicketDocument>) {}
+  constructor(
+    @InjectModel(Ticket.name)
+    private readonly ticketModel: Model<TicketDocument>,
+  ) {}
 
   async create(createTicketDto: CreateTicketDto): Promise<Ticket> {
     const { eventId, userId } = createTicketDto;
 
     const ticketNumber = this.generateTicketNumber();
     const qrCodeData = `${eventId}-${ticketNumber}`;
-    const qrCode = await QRCode.toDataURL(qrCodeData);  
+    const qrCode = await QRCode.toDataURL(qrCodeData);
 
     const newTicket = new this.ticketModel({
       eventId,
       userId,
       ticketNumber,
       qrCode,
-      used: false,  
+      used: false,
       createdAt: new Date(),
     });
 
@@ -38,7 +41,9 @@ export class TicketsService {
   }
 
   async update(id: string, updateTicketDto: UpdateTicketDto): Promise<Ticket> {
-    return await this.ticketModel.findByIdAndUpdate(id, updateTicketDto, { new: true }).exec();
+    return await this.ticketModel
+      .findByIdAndUpdate(id, updateTicketDto, { new: true })
+      .exec();
   }
 
   // // Supprimer un ticket
