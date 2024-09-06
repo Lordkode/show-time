@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Edit user details for <%= user.username %>.">
     <meta name="keywords" content="edit user, user profile, update details">
-    <meta name="author" content="Your Name">
+    <meta name="author" content="Eventix">
     <title>Edit User - <%= user.username %></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,13 +14,13 @@
 <body class="bg-gray-100 text-gray-900 flex flex-col items-center p-6">
     <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
         <h1 class="text-3xl font-bold mb-4">Edit User</h1>
-        <form action="/users/update/<%= user.id %>?_method=PUT" method="POST" class="space-y-4">
+        <form action="/users/update/<%= user.id %>" method="POST" class="space-y-4">
             <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
+                <label for="username" class=" text-sm font-medium text-gray-700 ">Username:</label>
                 <input type="text" name="username" id="username" value="<%= user.username %>" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                <label for="email" class=" text-sm font-medium text-gray-700">Email:</label>
                 <input type="email" name="email" id="email" value="<%= user.email %>" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
             <div>
@@ -28,17 +28,13 @@
                 <input type="password" name="password" id="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
             <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700">Phone:</label>
+                <label for="phone" class=" text-sm font-medium text-gray-700">Phone:</label>
                 <input type="tel" name="phone" id="phone" value="<%= user.phone %>" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-            <div class="flex items-center">
-                <input type="checkbox" name="is_admin" id="is_admin" <%= user.is_admin ? 'checked' : '' %> class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                <label for="is_admin" class="ml-2 block text-sm font-medium text-gray-700">Admin</label>
             </div>
             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Update</button>
         </form>
         <br>
-        <a href="/users" class="text-blue-600 hover:underline">Back to users list</a>
+        <a href="/users/dash" class="text-blue-600 hover:underline">Back to Dashboard</a>
     </div>
 </body>
 </html>

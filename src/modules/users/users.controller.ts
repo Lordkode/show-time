@@ -44,13 +44,22 @@ export class UsersController {
 
   // Route pour nommer un utilisateur admin en utilisant son email
   @Post('make-admin')
+  @Redirect('/users/dash')
   async makeAdmin(@Body('email') email: string) {
     const user = await this.usersService.makeAdminByEmail(email);
     return { message: `User with email ${email} is now an admin`, user };
   }
 
+  // Route pour renommer un admin en utilisateur simple en utilisant son email
+  @Post('make-notadmin')
+  async RetirerAdmin(@Body('email') email: string) {
+    const user = await this.usersService.makeNotAdminByEmail(email);
+    return { message: `User with email ${email} is now an user`, user };
+  }
+
+  // Route pour d'un admin pour creer un utilisateur
   @Post()
-  @Redirect('/users') // Redirige vers la liste des utilisateurs après la création
+  @Redirect('/users/dash')
   async createUser(@Body() createUserDto: CreateUserDto) {
     await this.usersService.createUser(createUserDto);
   }
@@ -63,7 +72,7 @@ export class UsersController {
   }
 
   @Post('/update/:id')
-  @Redirect('/users') // Redirige vers la liste des utilisateurs après la mise à jour
+  @Redirect('/users/dash') // Redirige vers la liste des utilisateurs après la mise à jour
   async updateUser(
     @Param('id') id: string,
     @Body() createUserDto: CreateUserDto,
@@ -72,7 +81,7 @@ export class UsersController {
   }
 
   @Post('/delete/:id')
-  @Redirect('/users') // Redirige vers la liste des utilisateurs après la suppression
+  @Redirect('/users/dash') // Redirige vers la liste des utilisateurs après la suppression
   async deleteUser(@Param('id') id: string) {
     await this.usersService.deleteUser(id);
   }

@@ -24,7 +24,7 @@
                 <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Add Event</a>
                 <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Display Tickets</a>
                 <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Verify Tickets</a>
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-pulse">Paiements</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-pulse">Payments</a>
                 <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Category</a>
             </nav>
         </aside>
@@ -34,35 +34,35 @@
                 <h2 class="text-2xl font-semibold text-center animate-fade-in">Welcome to Admin Dashboard</h2>
                 <div class="flex items-center">
                     <input class="bg-gray-200 p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-300 transition" type="text" placeholder="Recherche...">
-                    <button class="bg-blue-500 text-white ml-4 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Déconnexion</button>
+                    <button class="bg-blue-500 text-white ml-4 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Logout</button>
                 </div>
             </header>
 
             <section class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-                    <h3 class="text-xl font-semibold text-gray-700">Utilisateurs Total</h3>
+                    <h3 class="text-xl font-semibold text-gray-700">Users Total</h3>
                     <p class="text-4xl font-bold text-blue-500"><%= totalUsers %></p>
                 </div>
 
                 <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-                    <h3 class="text-xl font-semibold text-gray-700">Événements Actifs</h3>
+                    <h3 class="text-xl font-semibold text-gray-700">Active events</h3>
                     <p class="text-4xl font-bold text-blue-500">27</p>
                 </div>
 
                 <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
-                    <h3 class="text-xl font-semibold text-gray-700">Tickets Vendus</h3>
+                    <h3 class="text-xl font-semibold text-gray-700">Tickets Sold</h3>
                     <p class="text-4xl font-bold text-blue-500">850</p>
                 </div>
             </section>
 
             <section class="mt-6">
-                <h3 class="text-2xl font-semibold text-center animate-fade-in">Gestion des Administrateurs</h3>
+                <h3 class="text-2xl font-semibold text-center animate-fade-in">Administrator management</h3>
                 <table class="min-w-full mt-4 bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b text-blue-700">Nom</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Usename</th>
                             <th class="py-2 px-4 border-b text-blue-700">Email</th>
-                            <th class="py-2 px-4 border-b text-blue-700">Téléphone</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Phone</th>
                             <th class="py-2 px-4 border-b text-blue-700">Actions</th>
                         </tr>
                     </thead>
@@ -73,8 +73,11 @@
                             <td class="py-2 px-4 border-b"><%= totaladministrator.email %></td>
                             <td class="py-2 px-4 border-b"><%= totaladministrator.phone %></td>
                             <td class="py-2 px-4 border-b">
-                                <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 transition">Retirer Admin</button>
-                            </td>
+                                <form action="make-notadmin" method="post">
+                                    <input type="hidden" name='email' value= <%= totaladministrator.email %> >
+                                    <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 transition  ">Retirer Admin</button>
+                                </form>
+                                </td>
                         </tr>
                         <% }); %>
                     </tbody>
@@ -82,81 +85,49 @@
             </section>
 
             <section class="mt-6">
-                <h3 class="text-2xl font-semibold text-center animate-fade-in">Gestion des Utilisateurs</h3>
+                <h3 class="text-2xl font-semibold text-center animate-fade-in">User management</h3>
                 <table class="min-w-full mt-4 bg-white border border-gray-200">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 border-b text-blue-700">Nom</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Usename</th>
                             <th class="py-2 px-4 border-b text-blue-700">Email</th>
-                            <th class="py-2 px-4 border-b text-blue-700">Téléphone</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Phone</th>
                             <th class="py-2 px-4 border-b text-blue-700">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                      <% users.forEach(usere => { %>
+                    <% users.forEach(usere => { %>
                         <tr class="text-gray-700 hover:bg-gray-50 transition-colors">
                             <td class="py-2 px-4 border-b"><%= usere.username %></td>
                             <td class="py-2 px-4 border-b"><%= usere.email %></td>
                             <td class="py-2 px-4 border-b"><%= usere.phone %></td>
                             <td class="py-2 px-4 border-b">
-                                <button class="bg-green-500 text-white px-2 py-1 rounded-lg hover:bg-green-600 transition">Éditer</button>
-                                <button class="bg-red-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-red-600 transition">Supprimer</button>
-                                <button class="bg-blue-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-blue-600 transition">Nommer Admin</button>
-                            </td>
+                                <form action="<%= usere.id %>" method="get" class="inline">
+                                    <input type="hidden" name="id" >
+                                    <button class="bg-green-500 text-white px-2 py-1 rounded-lg hover:bg-green-600 transition inline ">Éditer</button>
+                                </form>
+                                    <form action="delete/<%= usere.id %>" method="POST" class="inline">
+                                    <input type="hidden" name="id" value="DELETE">
+                                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-red-600 transition id='supprimer' ">Supprimer</button>
+                                </form>
+                                <form action="make-admin" method="POST" class="inline">
+                                    <input type="hidden" name="email" value="<%= usere.email %>">
+                                    <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-blue-600 transition id ='nommer_admin' ">Nommer Admin</button>
+                                </form>
+                                </td>
                         </tr>
                         <% }); %>
                     </tbody>
                 </table>
             </section>
-
-            <section class="mt-6 bg-white p-6 rounded-lg shadow-lg">
-              <h3 class="text-2xl font-semibold text-center">Activité Récente</h3>
-              <ul class="list-disc list-inside mt-4">
-                  <li class="border-b py-2">Nouvel utilisateur ajouté : <strong>John Doe</strong></li>
-                  <li class="border-b py-2">Événement créé : <strong>Concert de l'été</strong></li>
-                  <li class="border-b py-2">Ticket vendu : <strong>12345</strong></li>
-              </ul>
-          </section>
-          <section class="mt-6">
-            <h3 class="text-2xl font-semibold text-center">Statistiques Avancées</h3>
-            <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
-                <canvas id="advancedChart"></canvas>
-            </div>
-        </section>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const ctx = document.getElementById('advancedChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                        datasets: [{
-                            label: 'Ventes Mensuelles',
-                            data: [30, 45, 60, 90, 70, 85],
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            });
-        </script>
-        
         </main>
     </div>
 </body>
 <footer class="bg-gray-800 text-white p-4 mt-6">
   <div class="container mx-auto text-center">
-      <p>&copy; 2024 Admin Dashboard. Tous droits réservés.</p>
-      <a href="#" class="text-blue-400 hover:underline">Politique de Confidentialité</a> | 
-      <a href="#" class="text-blue-400 hover:underline">Conditions d'Utilisation</a>
+      <p>&copy; 2024 Admin Dashboard. All rights reserved..</p>
+      <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> | 
+      <a href="#" class="text-blue-400 hover:underline">Terms of use</a>
   </div>
 </footer>
 </html>

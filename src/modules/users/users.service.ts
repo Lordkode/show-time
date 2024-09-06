@@ -19,16 +19,18 @@ export class UsersService {
       createUserDto.password,
       saltOrRounds,
     );
+    const isAdmin = createUserDto.is_admin ? true : false;
     const newUser = new this.userModel({
       ...createUserDto,
       password: hashedPassword,
+      is_admin: isAdmin,
     });
     return newUser.save();
   }
 
   // Récupération de tous les utilisateurs
   async findAllUsers(): Promise<User[]> {
-    return this.userModel.find().exec();
+    return this.userModel.find().sort({ id: 1 }).exec();
   }
 
   // Récupération d'un utilisateur par ID
@@ -53,6 +55,16 @@ export class UsersService {
       throw new NotFoundException(`User with email ${email} not found`);
     }
     user.is_admin = true;
+    return user.save();
+  }
+
+  // Récupération d'un utilisateur par email et mise à jour pour le nommer admin
+  async makeNotAdminByEmail(email: string): Promise<User> {
+    const user = await this.userModel.findOne({ email }).exec();
+    if (!user) {
+      throw new NotFoundException(`User with email ${email} not found`);
+    }
+    user.is_admin = false;
     return user.save();
   }
 
