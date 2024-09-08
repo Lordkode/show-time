@@ -27,6 +27,7 @@ export class Event extends Document {
   @Prop({ required: true })
   available: number;
 
+  @Prop({ required: true })
   // @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
   // category_id: Types.ObjectId;
 

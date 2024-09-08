@@ -17,10 +17,12 @@
         margin: 0;
         overflow: hidden;
       }
-      body h1 {
+      body h1,
+      .logo,
+      .welcome {
         font-family: 'Joti One', serif;
       }
-      .description {
+      p {
         font-family: 'Poppins', sans-serif;
       }
     </style>
@@ -28,8 +30,72 @@
   <body
     class="bg-[#0d1115] place-content-center place-items-center w-full h-screen"
   >
-    <h1 class="text-7xl font-black text-[#42fa71] text-center">
-      Register page
-    </h1>
+    <div class="w-full h-full flex">
+      <div class="flex flex-col w-1/2 bg-white h-full">
+        <div
+          class="flex justify-between place-content-center place-items-center h-14 px-8"
+        >
+          <div
+            class="w-8 h-8 bg-[#0d1115] rounded-md flex place-content-center place-items-center"
+          >
+            <span class="logo text-[#42fa71]"><a href="/">Ex</a></span>
+          </div>
+          <div
+            class="w-8 h-8 bg-green-500 rounded-md flex place-content-center place-items-center hidden"
+          >
+            <a href="/"> P </a>
+          </div>
+        </div>
+        <form
+          action="/auth/register"
+          method="POST"
+          class="flex flex-col space-y-6 place-content-center place-items-center h-full"
+        >
+          <h2 class="text-2xl welcome text-[#42fa71]">Welcome to Eventx</h2>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]"
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="exemple@email.com"
+            class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]"
+          />
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="+229 62 90 53 09"
+            class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            class="border border-[#0d1115] w-96 h-12 rounded-md pl-4 placeholder:text-[#0d1115] text-[#0d1115]"
+          />
+          <input
+            type="submit"
+            value="Create account"
+            class="border border-[#0d1115] bg-[#0d1115] w-96 h-12 rounded-md pl-4 text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
+          />
+        </form>
+      </div>
+      <div
+        class="w-1/2 flex flex-col place-content-center place-items-center space-y-5"
+      >
+        <h1 class="text-9xl text-center text-[#42fa71]">Stay <br />tuned</h1>
+        <p class="text-white w-[400px] font-extralight text-center">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi
+          ipsam ea consectetur, voluptates asperiores maxime perspiciatis.
+        </p>
+      </div>
+    </div>
   </body>
 </html>

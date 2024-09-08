@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event x | coming soon page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Joti+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@latest/dist/confetti.browser.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      body h1,
+      .logo {
+        font-family: 'Joti One', serif;
+      }
+      .description {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="">
+    <header
+      class="flex justify-between place-content-center place-items-center h-14 px-8"
+    >
+      <div
+        class="w-8 h-8 bg-[#0d1115] rounded-md flex place-content-center place-items-center"
+      >
+        <span class="logo text-[#42fa71]"><a href="/">Ex</a></span>
+      </div>
+      <div class="flex space-x-4 place-content-center place-items-center">
+        
+        <% if (isAuthenticated) { %> 
+          <form action="/auth/logout" method="POST">
+            <button
+              type="submit"
+              class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
+            >
+              Déconnecter
+            </button>
+          </form>
+        <% } else { %> 
+          <a
+            href="/auth/register"
+            class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
+          >S'inscrire</a>
+          <a
+            href="/auth/login"
+            class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
+          >Se connecter</a>
+        <% } %>
+        
+      </div>
+    </header>
+    <main class="flex place-content-center place-items-center">
+        <h1 class="text-5xl font-black">Admin dashboard</h1>
+    </main>
+  </body>
+</html>
