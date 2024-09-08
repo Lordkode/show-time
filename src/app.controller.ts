@@ -24,4 +24,8 @@ export class AppController {
   @Get('/events')
   @Render('events')
   events() {}
+
+  @Get('/admin-events')
+  @Render('admin-events')
+  adminevents() {}
 }

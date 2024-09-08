@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Events</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center">Liste des événements</h2>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-4 py-2 text-left text-gray-600">#</th>
+            <th class="px-4 py-2 text-left text-gray-600">Titre</th>
+            <th class="px-4 py-2 text-left text-gray-600">Promoteur</th>
+            <th class="px-4 py-2 text-left text-gray-600">Total Tickets</th>
+            <th class="px-4 py-2 text-left text-gray-600">Tickets Restants</th>
+            <th class="px-4 py-2 text-left text-gray-600">Date de Début</th>
+            <th class="px-4 py-2 text-left text-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="events-table-body" class="text-gray-700">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+
+    async function fetchEvents() {
+      try {
+        const response = await fetch('/event'); 
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des événements');
+        }
+
+        const allEvents = await response.json(); 
+        displayEvents(allEvents.eventData.reverse()); 
+      } catch (error) {
+        console.error('Erreur:', error);
+      }
+    }
+
+
+    function displayEvents(allEvents) {
+      const eventsTableBody = document.getElementById('events-table-body');
+
+      allEvents.forEach((event, index) => {
+        const truncatedTitle = event.title.length > 50 
+          ? event.title.substring(0, 50) + '...' 
+          : event.title;
+
+        const eventRow = document.createElement('tr');
+        eventRow.classList.add('border-b');
+
+        eventRow.innerHTML = `
+          <td class="px-4 py-2">${index + 1}</td>
+          <td class="px-4 py-2">${truncatedTitle}</td>
+          <td class="px-4 py-2">${event.promoteur}</td>
+          <td class="px-4 py-2">${event.total_tickets}</td>
+          <td class="px-4 py-2">${event.available}</td>
+          <td class="px-4 py-2">${new Date(event.start_time).toLocaleDateString()}</td>
+          <td class="px-4 py-2 flex">
+            <button class="text-blue-500 hover:text-blue-700 mx-1" title="Voir">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.9 4.9a2.5 2.5 0 11-3.5 3.5L10 15m5-5a2.5 2.5 0 11-3.5-3.5L10 5M5 9l-2 2m8-3l3-3m1 2l-1.5 1.5M7 21v-4.5A1.5 1.5 0 018.5 15H12m4 0a1.5 1.5 0 001.5 1.5H21M9 12l-3 3m6-6l6-6" />
+              </svg>
+            </button>
+            <button class="text-yellow-500 hover:text-yellow-700 mx-1" title="Modifier">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4l2-2m-2 0l1.5 1.5m3-1.5L15 4M10 7h2v2m1-2h3l2 2m3 3v4a1.5 1.5 0 01-1.5 1.5H12m4-4H9m2 2H7.5m-2.5 2l-1.5-1.5m3-1l-6 6" />
+              </svg>
+            </button>
+            <button class="text-red-500 hover:text-red-700 mx-1" title="Supprimer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12h1v4a2 2 0 11-4 0v-1a1 1 0 011-1h2v-3a1 1 0 112 0v2m1 0h2" />
+              </svg>
+            </button>
+          </td>
+        `;
+
+        eventsTableBody.appendChild(eventRow);
+      });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchEvents();
+    });
+  </script>
+</body>
+</html>

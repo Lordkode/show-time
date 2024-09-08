@@ -7,6 +7,8 @@ import {
   Param,
   Post,
   Put,
+  Redirect,
+  Render,
   Res,
 } from '@nestjs/common';
 import { CreateEventDto } from 'src/dto/create-event.dto';
@@ -17,13 +19,11 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Post()
+  @Redirect('/events/dash')
   async createEvent(@Res() response, @Body() createEventDto: CreateEventDto) {
     try {
       const newEvent = await this.eventService.createEvent(createEventDto);
-      return response.status(HttpStatus.CREATED).json({
-        message: 'Event has been created successfully',
-        newEvent,
-      });
+      return { newEvent };
     } catch (err) {
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400,
@@ -55,31 +55,29 @@ export class EventController {
   }
 
   @Get()
+  @Render('event/index')
   async getEvents(@Res() response) {
     try {
       const eventData = await this.eventService.getAllEvents();
-      return response.status(HttpStatus.OK).json({
-        message: 'All events data found successfully',
-        eventData,
-      });
+      return { eventData };
     } catch (err) {
       return response.status(err.status).json(err.response);
     }
   }
+
   @Get('/:id')
+  @Render('event/event-details')
   async getEvent(@Res() response, @Param('id') eventId: string) {
     try {
       const existingEvent = await this.eventService.getEvent(eventId);
-      return response.status(HttpStatus.OK).json({
-        message: 'Event found successfully',
-        existingEvent,
-      });
+      return { existingEvent };
     } catch (err) {
       return response.status(err.status).json(err.response);
     }
   }
 
   @Delete('/:id')
+  @Redirect('/events/dash')
   async deleteEvent(@Res() response, @Param('id') eventId: string) {
     try {
       const deletedEvent = await this.eventService.deleteEvent(eventId);

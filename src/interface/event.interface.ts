@@ -17,7 +17,9 @@ export interface IEvent extends Document {
 
   readonly available: number;
 
-//   readonly category_id: Types.ObjectId;
+  //   readonly category_id: Types.ObjectId;
 
   readonly thumbnail: string;
+
+  // readonly userId: string;
 }

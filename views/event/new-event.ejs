@@ -6,6 +6,11 @@
     <title>Add new event</title>
 </head>
 <body>
+  <div class=""><% eventData.forEach(event=> { %>
+    <div><%= event.title %></div>
+    <%}) %> </div>
+  
+
     <div class="flex items-center justify-center p-12">
         <!-- Author: FormBold Team -->
         <!-- Learn More: https://formbold.com -->
@@ -16,7 +21,7 @@
                 for="name"
                 class="mb-3 block text-base font-medium text-[#07074D]"
               >
-                Full Name
+                Full Namedfhdghdfhdg
               </label>
               <input
                 type="text"

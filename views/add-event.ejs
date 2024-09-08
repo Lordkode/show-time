@@ -134,6 +134,43 @@
         document.querySelector('#description').value = quill.root.innerHTML;
       };
       
+
+
+      
+    async function fetchEvents() {
+      try {
+        const response = await fetch('/category'); 
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des événements');
+        }
+
+        const allCategories = await response.json(); 
+        displayEvents(allCategories.eventData.reverse()); 
+      } catch (error) {
+        console.error('Erreur:', error);
+      }
+    }
+
+
+    function displayEvents(allCategories) {
+      const categorySelect = document.getElementById('category_id');
+
+      allCategories.forEach((event, index) => {
+        
+        const categoryList = document.getElementById('category_id');
+
+        categoryList.innerHTML = `
+          <option value="64f5c73b4a8e5e31d9a4b2d6">{}</option>
+        `;
+
+        categorySelect.appendChild(categoryList);
+      });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchEvents();
+    });
   </script>
 </body>
 </html>
