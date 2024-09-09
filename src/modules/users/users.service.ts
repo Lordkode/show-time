@@ -4,21 +4,17 @@ import { Model } from 'mongoose';
 import { User } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import * as bcrypt from 'bcrypt';
-
+import * as argon2 from 'argon2';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-  ) {}
+  ) { }
 
   // Création d'un utilisateur
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const saltOrRounds = 10;
-    const hashedPassword = await bcrypt.hash(
-      createUserDto.password,
-      saltOrRounds,
-    );
+    const hashedPassword = await argon2.hash(
+      createUserDto.password);
     const isAdmin = createUserDto.is_admin ? true : false;
     const newUser = new this.userModel({
       ...createUserDto,
@@ -75,11 +71,8 @@ export class UsersService {
   async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     updateUserDto.is_admin = updateUserDto.is_admin ?? false;
     if (updateUserDto.password) {
-      const saltOrRounds = 10;
-      updateUserDto.password = await bcrypt.hash(
-        updateUserDto.password,
-        saltOrRounds,
-      );
+      updateUserDto.password = await argon2.hash(
+        updateUserDto.password);
     }
     const updatedUser = await this.userModel
       .findByIdAndUpdate({ _id: id }, updateUserDto, { new: true })
