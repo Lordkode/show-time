@@ -26,7 +26,7 @@ export class UsersService {
 
   // Récupération de tous les utilisateurs
   async findAllUsers(): Promise<User[]> {
-    return this.userModel.find().sort({ id: 1 }).exec();
+    return this.userModel.find().sort({ _id: -1 }).exec();
   }
 
   // Récupération d'un utilisateur par ID
@@ -40,7 +40,10 @@ export class UsersService {
 
   // Récupération de tous les admin par  is_admin=true
   async getAdminUsers(): Promise<User[]> {
-    const administrators = this.userModel.find({ is_admin: true }).exec();
+    const administrators = this.userModel
+      .find({ is_admin: true })
+      .sort({ _id: -1 })
+      .exec();
     return administrators;
   }
 
@@ -66,6 +69,7 @@ export class UsersService {
 
   // Mise à jour d'un utilisateur
   async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    updateUserDto.is_admin = updateUserDto.is_admin ?? false;
     if (updateUserDto.password) {
       updateUserDto.password = await argon2.hash(
         updateUserDto.password);
@@ -74,7 +78,7 @@ export class UsersService {
       .findByIdAndUpdate({ _id: id }, updateUserDto, { new: true })
       .exec();
     if (!updatedUser) {
-      throw new NotFoundException(`User with ID #${id} not found`);
+      throw new NotFoundException('User with ID #${id} not found');
     }
     return updatedUser;
   }

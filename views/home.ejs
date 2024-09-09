@@ -90,7 +90,8 @@
                                 class="px-6 py-3 bg-transparent text-[#42fa71] font-semibold rounded-md border border-[#42fa71] hover:bg-[#42fa71] hover:text-black">En
                                 savoir plus</a>
                         </div>
-                        <div class="hidden sell-box absolute bottom-80 left-[500px] z-40 left-2 flex flex-col place-content-center place-items-center justify-around space-y-4 w-64 h-[300px] rounded-md p-6 bg-white">
+                        <div
+                            class="hidden sell-box absolute bottom-80 left-[500px] z-40 left-2 flex flex-col place-content-center place-items-center justify-around space-y-4 w-64 h-[300px] rounded-md p-6 bg-white">
                             <div>
                                 <h4 class="title">Date & Time</h4>
                                 <p class="description ">Saturday, 18 September 20224 at 20:30 PM</p>
@@ -287,331 +288,68 @@
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-4">
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
+                <% if (events.length> 0) { %>
+                    <% events.forEach(event=> { %>
+                        <div class="rounded-md">
+                            <div class="relative">
+                                <img src="/images/3.jpg" alt="Image de l'événement" class="rounded-t-md">
+                                <span
+                                    class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">
+                                    <!-- Ajoute ici un prix s'il est disponible -->
+                                    <%= event.total_tickets %> tickets disponibles
+                                </span>
+                                <span
+                                    class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
+                                    <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                                            fill="#FF0000" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
+                                <div class="flex flex-col space-y-4 place-content-center place-items-center">
+                                    <!-- Mois de l'événement -->
+                                    <span class="text-[#42fa71] date">
+                                        <%= new Date(event.start_time).toLocaleString('default', { month: 'short' }) %>
+                                    </span>
+                                    <!-- Jour de l'événement -->
+                                    <span class="date">
+                                        <%= new Date(event.start_time).getDate() %>
+                                    </span>
+                                </div>
+                                <div>
+                                    <!-- Titre de l'événement -->
+                                    <h3 class="title text-[#42fa71] font-black">
+                                        <%= event.title %>
+                                    </h3>
+                                    <!-- Description de l'événement -->
+                                    <p class="description font-light">
+                                        <%= event.description %>
+                                    </p>
+                                    <!-- Date et heure de l'événement -->
+                                    <p class="description font-light">Début : <%= new
+                                            Date(event.start_time).toLocaleString() %>
+                                    </p>
+                                    <p class="description font-light">Fin : <%= new
+                                            Date(event.end_time).toLocaleString() %>
+                                    </p>
+                                    <!-- Localisation de l'événement -->
+                                    <p class="description font-light">Lieu : <%= event.location %>
+                                    </p>
+                                    <!-- Promoteur de l'événement -->
+                                    <p class="description font-light">Organisé par : <%= event.promoteur %>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-md cursor-pointer">
-                    <div class="relative">
-                        <img src="/images/1.jpg" alt="concert gims coca-cola arena" class="rounded-t-md">
-                        <span class="price absolute top-2 left-2 rounded-md bg-[#0d1115] text-[#42fa71] px-4 py-1">5000
-                            FCFA</span>
-                        <span
-                            class="absolute flex place-content-center place-items-center top-2 right-2 rounded-full bg-white w-[32px] h-[32px]">
-                            <svg width="24px" height="24px" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                                    fill="#FF0000" />
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="border border-[#0d1115] rounded-b-md p-4 flex space-x-4">
-                        <div class="flex flex-col space-y-4 place-content-center place-items-center">
-                            <span class="text-[#42fa71] date">Sep</span>
-                            <span class="date">18</span>
-                        </div>
-                        <div>
-                            <h3 class="title  text-[#42fa71] font-black">Concert Gims Coco-cola Arena</h3>
-                            <p class="description font-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                        <% }); %>
+                            <% } else { %>
+                                <p>Aucun événement disponible pour le moment.</p>
+                                <% } %>
             </div>
+
         </div>
         <!-- FILTER SYSTEM END  -->
 

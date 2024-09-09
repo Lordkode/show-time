@@ -18,11 +18,11 @@ export class User extends Document {
   @Prop({ default: false })
   is_admin: boolean;
 
-  @Prop({ default: [], type: [String] })
+  @Prop({ default: null, type: [String] })
   favorite: string[];
 
   @Prop({ default: null })
-  avatar: string;
+  avatar: string | null;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

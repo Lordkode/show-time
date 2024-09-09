@@ -1,66 +1,134 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event x | coming soon page</title>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard d'administration pour la gestion des utilisateurs, événements, tickets, paiements, et catégories">
+    <meta name="author" content="Martin Raymond Richard Said ">
+    <meta name="keywords" content="dashboard, administration, gestion des utilisateurs, événements, tickets, paiements, catégories">
+    <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Joti+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@latest/dist/confetti.browser.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      body h1,
-      .logo {
-        font-family: 'Joti One', serif;
-      }
-      .description {
-        font-family: 'Poppins', sans-serif;
-      }
-    </style>
-  </head>
-  <body class="">
-    <header
-      class="flex justify-between place-content-center place-items-center h-14 px-8"
-    >
-      <div
-        class="w-8 h-8 bg-[#0d1115] rounded-md flex place-content-center place-items-center"
-      >
-        <span class="logo text-[#42fa71]"><a href="/">Ex</a></span>
-      </div>
-      <div class="flex space-x-4 place-content-center place-items-center">
-        
-        <% if (isAuthenticated) { %> 
-          <form action="/auth/logout" method="POST">
-            <button
-              type="submit"
-              class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
-            >
-              Déconnecter
-            </button>
-          </form>
-        <% } else { %> 
-          <a
-            href="/auth/register"
-            class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
-          >S'inscrire</a>
-          <a
-            href="/auth/login"
-            class="text-center content-center border border-[#0d1115] bg-[#0d1115] w-40 h-12 rounded-md text-[#42fa71] hover:bg-transparent hover:text-[#42fa71] hover:border-[#42fa71]"
-          >Se connecter</a>
-        <% } %>
-        
-      </div>
-    </header>
-    <main class="flex place-content-center place-items-center">
-        <h1 class="text-5xl font-black">Admin dashboard</h1>
-    </main>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="flex flex-col min-h-screen md:flex-row">
+        <aside class="bg-gray-800 text-white w-full md:w-64 flex flex-col min-h-screen">
+            <div class="flex items-center justify-center h-20 shadow-md">
+                <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+            </div>
+            <nav class="mt-5">
+                <a href="/users" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Display User</a>
+                <a href="/users/create" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Add User</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">All Events</a>
+                <a href="/event/add-event" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Add Event</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Display Tickets</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Verify Tickets</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-pulse">Payments</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white animate-fade-in">Category</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 bg-gray-100">
+            <header class="flex items-center justify-between bg-white shadow p-4">
+                <h2 class="text-2xl font-semibold text-center animate-fade-in">Welcome to Admin Dashboard</h2>
+                <div class="flex items-center">
+                  <input class="bg-gray-200 p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-300 transition" type="text" placeholder="Recherche...">
+                  <form action="/auth/logout" method="post" style="display: inline;">
+                    <button type="submit" class="bg-blue-500 text-white ml-4 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Logout</button>
+                  </form>
+                </div>
+              </header>
+            <section class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold text-gray-700">Users Total</h3>
+                    <p class="text-4xl font-bold text-blue-500"><%= totalUsers %></p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold text-gray-700">Active events</h3>
+                    <p class="text-4xl font-bold text-blue-500">27</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                    <h3 class="text-xl font-semibold text-gray-700">Tickets Sold</h3>
+                    <p class="text-4xl font-bold text-blue-500">850</p>
+                </div>
+            </section>
+
+            <section class="mt-6">
+                <h3 class="text-2xl font-semibold text-center animate-fade-in">Administrator management</h3>
+                <table class="min-w-full mt-4 bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-blue-700">Usename</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Email</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Phone</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% totaladministrators.forEach(totaladministrator => { %>
+                        <tr class="text-gray-700 hover:bg-gray-50 transition-colors">
+                            <td class="py-2 px-4 border-b"><%= totaladministrator.username %></td>
+                            <td class="py-2 px-4 border-b"><%= totaladministrator.email %></td>
+                            <td class="py-2 px-4 border-b"><%= totaladministrator.phone %></td>
+                            <td class="py-2 px-4 border-b">
+                                <form action="make-notadmin" method="post">
+                                    <input type="hidden" name='email' value= <%= totaladministrator.email %> >
+                                    <button class="bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 transition  ">Retirer Admin</button>
+                                </form>
+                                </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="mt-6">
+                <h3 class="text-2xl font-semibold text-center animate-fade-in">User management</h3>
+                <table class="min-w-full mt-4 bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b text-blue-700">Usename</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Email</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Phone</th>
+                            <th class="py-2 px-4 border-b text-blue-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% users.forEach(usere => { %>
+                        <tr class="text-gray-700 hover:bg-gray-50 transition-colors">
+                            <td class="py-2 px-4 border-b"><%= usere.username %></td>
+                            <td class="py-2 px-4 border-b"><%= usere.email %></td>
+                            <td class="py-2 px-4 border-b"><%= usere.phone %></td>
+                            <td class="py-2 px-4 border-b">
+                                <form action="<%= usere.id %>" method="get" class="inline">
+                                    <input type="hidden" name="id" >
+                                    <button class="bg-green-500 text-white px-2 py-1 rounded-lg hover:bg-green-600 transition inline ">Éditer</button>
+                                </form>
+                                    <form action="delete/<%= usere.id %>" method="POST" class="inline">
+                                    <input type="hidden" name="id" value="DELETE">
+                                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-red-600 transition id='supprimer' ">Supprimer</button>
+                                </form>
+                                <form action="make-admin" method="POST" class="inline">
+                                    <input type="hidden" name="email" value="<%= usere.email %>">
+                                    <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded-lg ml-2 hover:bg-blue-600 transition id ='nommer_admin' ">Nommer Admin</button>
+                                </form>
+                                </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+<footer class="bg-gray-800 text-white p-4 mt-6">
+  <div class="container mx-auto text-center">
+      <p>&copy; 2024 Admin Dashboard. All rights reserved..</p>
+      <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> | 
+      <a href="#" class="text-blue-400 hover:underline">Terms of use</a>
+  </div>
+</footer>
 </html>

@@ -46,15 +46,15 @@ export class CreateEventDto {
   @IsNotEmpty()
   readonly total_tickets: number;
 
+  @Type(()=>Number)
+  @IsNumber()
+  @IsNotEmpty()
+  readonly price: number
+
   @Type(() => Number)
   @IsNumber()
   @IsNotEmpty()
   readonly available: number;
-
-  //   @IsNumber()
-  //   @Type(() => Types.ObjectId)
-  //   @IsNotEmpty()
-  //   readonly category_id: number;
 
   @IsString()
   @IsNotEmpty()
