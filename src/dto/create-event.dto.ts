@@ -4,6 +4,7 @@ import {
   IsString,
   MaxLength,
   IsDate,
+  IsOptional,
 } from 'class-validator';
 
 import { Type } from 'class-transformer';
@@ -51,14 +52,14 @@ export class CreateEventDto {
   @IsNotEmpty()
   readonly available: number;
 
-  //   @IsNumber()
-  //   @Type(() => Types.ObjectId)
-  //   @IsNotEmpty()
-  //   readonly category_id: number;
-
   @IsString()
   @IsNotEmpty()
-  readonly thumbnail: string;
+  @MaxLength(60)
+  readonly category: string;
+
+  @IsString()
+  @IsOptional()
+  thumbnail: string;
 
   // @IsString()
   // @IsNotEmpty()

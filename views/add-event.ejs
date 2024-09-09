@@ -14,7 +14,7 @@
     
     <h2 class="text-2xl font-bold mb-6 text-center">Créer un Événement</h2>
 
-    <form action="/event" method="POST" class="space-y-4">
+    <form action="/event" method="POST" class="space-y-4" enctype="multipart/form-data">
 
       <!-- title -->
       <div>
@@ -51,11 +51,13 @@
       <!-- Total Tickets et Category -->
       <div class="grid grid-cols-2 gap-4">
         <div>
-            <label for="category_id" class="block text-sm font-medium text-gray-700">Catégorie</label>
-            <select id="category_id" name="category_id" required class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <label for="category" class="block text-sm font-medium text-gray-700">Catégorie</label>
+            <select id="category" name="category" required class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <option value="">Sélectionnez une catégorie</option>
-              <option value="64f5c73b4a8e5e31d9a4b2d5">Concert</option>
-              <option value="64f5c73b4a8e5e31d9a4b2d6">Conférence</option>
+              <option value="Concert">Concert</option>
+              <option value="Conférence">Conférence</option>
+              <option value="Ciném">Cinéma</option>
+              <option value="Autres">Autres</option>
             </select>
         </div>
 
@@ -153,11 +155,11 @@
 
 
     function displayEvents(allCategories) {
-      const categorySelect = document.getElementById('category_id');
+      const categorySelect = document.getElementById('category');
 
       allCategories.forEach((event, index) => {
         
-        const categoryList = document.getElementById('category_id');
+        const categoryList = document.getElementById('category');
 
         categoryList.innerHTML = `
           <option value="64f5c73b4a8e5e31d9a4b2d6">{}</option>

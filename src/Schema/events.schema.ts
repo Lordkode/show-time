@@ -28,8 +28,7 @@ export class Event extends Document {
   available: number;
 
   @Prop({ required: true })
-  // @Prop({ type: Types.ObjectId, ref: 'Category', required: true })
-  // category_id: Types.ObjectId;
+  category: string;
 
   @Prop({ type: String, required: true })
   thumbnail: string;
